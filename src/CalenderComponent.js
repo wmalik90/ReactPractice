@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./css/Calendar.css";
 
 function CalendarComponent({ startingMonth, endingMonth }) {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(
     new Date(new Date().getFullYear(), startingMonth - 1, 1)
   );
@@ -10,7 +10,7 @@ function CalendarComponent({ startingMonth, endingMonth }) {
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  const monthNames = [    "January",    "February",    "March",    "April",    "May",    "June",    "July",    "August",    "September",    "October",    "November",    "December",  ];
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",];
 
   const monthStart = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
   const monthEnd = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0);
@@ -90,19 +90,19 @@ function CalendarComponent({ startingMonth, endingMonth }) {
                   <div
                     className={
                       selectedDate &&
-                      selectedDate.getDate() === day &&
-                      selectedDate.getMonth() === currentMonth.getMonth() &&
-                      selectedDate.getFullYear() === currentMonth.getFullYear()
+                        selectedDate.getDate() === day &&
+                        selectedDate.getMonth() === currentMonth.getMonth() &&
+                        selectedDate.getFullYear() === currentMonth.getFullYear()
                         ? "selected-date"
                         : isCurrentDate(
+                          new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
+                        )
+                          ? "current-date"
+                          : isSelectableDate(
                             new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
                           )
-                        ? "current-date"
-                        : isSelectableDate(
-                            new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
-                          )
-                        ? "selectable-date"
-                        : "unselectable-date"
+                            ? "selectable-date"
+                            : "unselectable-date"
                     }
                     onClick={() =>
                       selectDate(new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day))
@@ -124,12 +124,12 @@ function CalendarComponent({ startingMonth, endingMonth }) {
           id="goto-date"
           value={gotoDate}
           onChange={handleGotoDateChange}
-          // min={minDate.toISOString().substring(0, 10)}
-          // max={maxDate.toISOString().substring(0, 10)}
+        // min={minDate.toISOString().substring(0, 10)}
+        // max={maxDate.toISOString().substring(0, 10)}
         />
         <button onClick={handleGotoDate}>Go</button>
       </div>
     </div>
   );
-                  }
-  export default CalendarComponent;
+}
+export default CalendarComponent;

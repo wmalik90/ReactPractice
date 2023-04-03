@@ -2,60 +2,54 @@ import React, { useEffect, useState } from 'react';
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from 'axios'
 import CalendarComponent from './CalenderComponent';
+import { FileLoading } from './FileLoading/FileLoading';
 
 
 function App() {
-  const [passengers, setPassengers] = useState([]);
-  const style = {
-    height: 18,
-    border: "1px solid green",
-    margin: 6,
-    padding: 8
-  };
+  // const [passengers, setPassengers] = useState([]);
+  // const style = {
+  //   height: 18,
+  //   border: "1px solid green",
+  //   margin: 6,
+  //   padding: 8
+  // };
 
-  let totalRecords = 149;
-  const  GetDataFromApi =  () => {
-    //let offset = 0;
+  // let totalRecords = 149;
+  // const  GetDataFromApi =  () => {
+  
+  //   let limit = 10;
+  //   let offset = Math.ceil(passengers.length / limit)+1;
+
+
+
+  //   var apiurl = `https://api.instantwebtools.net/v1/passenger?page=${offset}&size=${limit}`;
+
+  //   axios.get(apiurl)
+  //     .then((res) => {
+  //       const apiresp =  res?.data;
+  //       const mergeData= [...passengers,...apiresp.data];
+  //       setPassengers(mergeData);
+  //     })
+  //     .catch((err) => {
+  //   })
+  // };
+
+  // useEffect(()=>{
+  //   GetDataFromApi();
    
-    let limit = 10;
-    let offset = Math.ceil(passengers.length / limit)+1;
+  // },[])
 
-    //alert(offset)
-
-    var apiurl = `https://api.instantwebtools.net/v1/passenger?page=${offset}&size=${limit}`;
-
-    axios.get(apiurl)
-      .then((res) => {
-        const apiresp =  res?.data;
-        const mergeData= [...passengers,...apiresp.data];
-        console.log("mergeData",mergeData)
-        setPassengers(mergeData);
-        console.log("apiresp", passengers);
-        
-      })
-      .catch((err) => {
-        console.log("Error:", err);
-    })
-
-    //setItems(items.concat(Array.from({ length: 1000 })));
-  };
-
-  useEffect(()=>{
-    GetDataFromApi();
-   
-  },[])
-
-  const fetchmoreData=()=>{
-    if(passengers.length < totalRecords)
-    {
-      GetDataFromApi();
-    }
+  // const fetchmoreData=()=>{
+  //   if(passengers.length < totalRecords)
+  //   {
+  //     GetDataFromApi();
+  //   }
  
-  }
+  // }
 
   return (
     <>
-      <CalendarComponent startingMonth={3} endingMonth={9} />
+      {/* <CalendarComponent startingMonth={3} endingMonth={9} />
       <br></br> <br></br> <br></br> <br></br> 
 
        <div id="scrollableDiv" style={{ height: 300, width: 200, overflow: 'auto',  flexDirection: 'column-reverse', }}>
@@ -71,8 +65,12 @@ function App() {
               {i.name} - #{index}
             </div>
           ))}
-        </InfiniteScroll>
-      </div>
+        </InfiniteScroll> 
+
+       
+
+      </div>*/}
+       <FileLoading/>
 
     </>
   );
